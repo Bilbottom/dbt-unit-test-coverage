@@ -8,6 +8,8 @@ import pytest
 import dbt_unit_test_coverage.coverage.coverage as coverage
 from dbt_unit_test_coverage.dbt import DbtConfig
 
+pytestmark = pytest.mark.unit  # noqa
+
 CoverageRecord = tuple[str, int, int, float, str]
 
 

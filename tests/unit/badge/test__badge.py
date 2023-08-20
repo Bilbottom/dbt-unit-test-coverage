@@ -7,6 +7,8 @@ import pytest
 
 import dbt_unit_test_coverage.badge.badge as badge
 
+pytestmark = pytest.mark.unit  # noqa
+
 
 def test__generate_badge(tmp_path: pathlib.Path) -> None:
     """

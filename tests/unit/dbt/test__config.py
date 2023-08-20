@@ -8,6 +8,8 @@ import pytest
 
 import dbt_unit_test_coverage.dbt.config as config
 
+pytestmark = pytest.mark.unit  # noqa
+
 
 @pytest.fixture
 def dbt_config_root(tmp_path) -> pathlib.Path:

@@ -48,6 +48,10 @@ python_files = "test__*.py"
 python_functions = "test__*"
 pythonpath = "dbt_unit_test_coverage"
 testpaths = ["tests"]
+markers = [
+    "unit: mark the test as a unit test.",
+    "integration: mark the test as an integration test.",
+]
 
 
 [tool.isort]
