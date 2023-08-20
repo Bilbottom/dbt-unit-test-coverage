@@ -97,7 +97,7 @@ def _is_import_cte(common_table_expression: Expression) -> bool:
     """
     return (
         # The `FROM` isn't a subquery
-        getattr(common_table_expression.args["from"], "alias_or_name", "") != ""
+        getattr(common_table_expression.args.get("from", ""), "alias_or_name", "") != ""
         # The column list is a star, or doesn't have any calculations
         and (
             common_table_expression.is_star
