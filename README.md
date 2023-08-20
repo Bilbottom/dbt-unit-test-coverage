@@ -25,20 +25,20 @@ This is not for public consumption (yet!), but rather to show off some Sainsbury
 
 This package will generate a **very rudimentary** coverage metric for the dbt models' unit tests. We can't measure line hits like we can with Python code, but we can measure the number of models that have unit tests and _which of their CTEs_ have unit tests.
 
-To run the code coverage report, compile the project and run the code coverage package:
+To run the code coverage report, invoke the `dbt-unit-test-coverage` package after compiling the project:
 
 ```bash
 dbt clean
 dbt deps
-
 dbt compile
-python -m dbt_unit_test_coverage
+
+dbt-unit-test-coverage
 ```
 
-Help for the `dbt_unit_test_coverage` package can be generated using the `--help` flag thanks to [the `typer` library](https://typer.tiangolo.com/):
+Help for the `dbt-unit-test-coverage` package can be generated using the `--help` flag thanks to [the `typer` library](https://typer.tiangolo.com/):
 
 ```bash
-python -m dbt_unit_test_coverage --help
+dbt-unit-test-coverage --help
 ```
 
 ## Summary of extensions
