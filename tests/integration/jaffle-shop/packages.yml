@@ -1,0 +1,4 @@
+---
+packages:
+  - git: "https://github.com/Bilbottom/dbt-unit-testing"
+    revision: v0.0.2

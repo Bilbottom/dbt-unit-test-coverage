@@ -1,0 +1,27 @@
+---
+name: jaffle_shop
+
+config-version: 2
+version: 0.0.0
+require-dbt-version: ["1.4.6"]
+
+profile: default
+
+macro-paths: [macros]
+model-paths: [models]
+seed-paths: [seeds]
+test-paths: [tests]
+
+target-path: target
+packages-install-path: packages
+clean-targets: [logs, target, packages]
+
+quoting:
+  database: false
+  schema: false
+  identifier: false
+
+models:
+  jaffle_shop:
+    +materialized: table
+    +schema: main
