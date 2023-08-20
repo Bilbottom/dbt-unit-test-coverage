@@ -22,17 +22,27 @@ This is not for public consumption (yet!), but rather to show off some Sainsbury
 
 - https://github.com/Bilbottom/dbt-unit-testing
 
+## Installation ⬇️
+
+This is currently only available on GitHub, so you'll need to supply the GitHub URL to `pip`:
+
+```
+pip install git+https://github.com/Bilbottom/dbt-unit-test-coverage@v0.0.1
+```
+
 ## Usage 📖
 
 This package will generate a **very rudimentary** coverage metric for the dbt models' unit tests. We can't measure line hits like we can with Python code, but we can measure the number of models that have unit tests and _which of their CTEs_ have unit tests.
 
-To run the code coverage report, invoke the `dbt-unit-test-coverage` package after compiling the project:
+To run the code coverage report, invoke the `dbt-unit-test-coverage` package after compiling your project:
 
 ```bash
+# Compile your project
 dbt clean
 dbt deps
 dbt compile
 
+# Generate the coverage
 dbt-unit-test-coverage
 ```
 
