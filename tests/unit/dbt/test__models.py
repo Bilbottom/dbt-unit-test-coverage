@@ -10,6 +10,8 @@ import sqlglot
 import dbt_unit_test_coverage.dbt.models as models
 from dbt_unit_test_coverage.dbt import DbtConfig
 
+pytestmark = pytest.mark.unit  # noqa
+
 
 @pytest.fixture
 def compiled_sql() -> str:

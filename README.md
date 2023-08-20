@@ -1,8 +1,9 @@
 <div align="center">
 
 [![Python 3.9](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
-[![GitHub last commit](https://img.shields.io/github/last-commit/Bilbottom/dbt-unit-test-coverage)](https://github.com/Bilbottom/dbt-unit-test-coverage/commits/main)
+[![Tests](https://github.com/Bilbottom/dbt-unit-test-coverage/actions/workflows/application-tests.yaml/badge.svg)](https://github.com/Bilbottom/dbt-unit-test-coverage/actions/workflows/application-tests.yaml)
 [![coverage](coverage.svg)](https://github.com/dbrgn/coverage-badge)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Bilbottom/dbt-unit-test-coverage)](https://github.com/Bilbottom/dbt-unit-test-coverage/commits/main)
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
