@@ -3,10 +3,12 @@ Parse the compiled model SQL files to find the CTEs.
 """
 import dataclasses
 import pathlib
+import textwrap
 from typing import Literal
 
 import sqlglot
 from sqlglot import Expression
+from sqlglot.errors import ParseError
 from typing_extensions import Self
 
 from dbt_unit_test_coverage.dbt.config import DbtConfig
@@ -116,7 +118,14 @@ def _get_common_table_expressions(sql: str) -> dict[str, Expression]:
 
     :return: A dictionary of CTE name to CTE expression.
     """
-    parsed = sqlglot.parse(sql)
+    try:
+        parsed = sqlglot.parse(sql)
+    except ParseError as err:
+        raise ParseError(
+            f"Error parsing the following SQL:\n\n{textwrap.indent(sql.strip(), prefix='    ')}\n\n"
+            f"This is likely due to a syntax error in the SQL. See the full traceback for details."
+        ) from err
+
     if len(parsed) != 1:
         raise ValueError(f"The SQL text should have a single statement, found {len(parsed)} statements.")
 
