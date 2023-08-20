@@ -5,8 +5,25 @@ from __future__ import annotations
 
 import dataclasses
 import pathlib
+from typing import TypeVar
 
 import yaml
+
+_T = TypeVar("_T")
+
+
+def _deduplicate(items: list[_T]) -> list[_T]:
+    """
+    Return a list with duplicates removed.
+
+    Note that this *will not* work on un-hashable types, and is not
+    guaranteed to preserver item order.
+
+    :param items: The list to deduplicate.
+
+    :return: The deduplicated list.
+    """
+    return list(set(items))
 
 
 @dataclasses.dataclass
@@ -37,7 +54,7 @@ class DbtConfig:
 
         return DbtConfig(
             name=config["name"],
-            model_paths=[pathlib.Path(p) for p in config["model-paths"]],
-            test_paths=[pathlib.Path(p) for p in config["test-paths"]],
-            target_path=pathlib.Path(config["target-path"]),
+            model_paths=_deduplicate([pathlib.Path(p) for p in config.get("model-paths", "models")]),
+            test_paths=_deduplicate([pathlib.Path(p) for p in config.get("test-paths", "tests")]),
+            target_path=pathlib.Path(config.get("target-path", "target")),
         )
