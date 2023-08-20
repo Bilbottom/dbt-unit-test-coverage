@@ -7,6 +7,7 @@ import dataclasses
 import pathlib
 import sqlite3
 
+from dbt_unit_test_coverage.constants import ROOT
 from dbt_unit_test_coverage.dbt import (
     DbtConfig,
     parse_dbt_unit_tests,
@@ -63,7 +64,7 @@ def _compute(
     Compute the code coverage for the dbt unit tests.
     """
     with sqlite3.connect(":memory:") as conn:
-        conn.executescript(pathlib.Path("dbt_unit_test_coverage/coverage.sql").read_text())
+        conn.executescript((ROOT / "coverage/coverage.sql").read_text())
 
         conn.executemany("""INSERT INTO models VALUES (?, ?, ?)""", model_rows)
         conn.executemany("""INSERT INTO tests VALUES (?, ?)""", test_rows)
