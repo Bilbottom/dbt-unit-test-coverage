@@ -28,13 +28,13 @@ repos:
         name: Validate Python
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.0-alpha.0
+    rev: v3.0.2
     hooks:
       - id: prettier
         name: Make code pretty
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.7.0
+    rev: v3.10.1
     hooks:
       - id: pyupgrade
         args: [--py39-plus]
@@ -48,20 +48,20 @@ repos:
         args: ["--profile", "black"]
 
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.7.0
     hooks:
       - id: black
         name: Check Python formatting
 
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.1.5
+    rev: v2.2.2
     hooks:
       - id: pycln
         name: Remove unused imports
         args: [--config=pyproject.toml]
 
   - repo: https://github.com/python-poetry/poetry
-    rev: 1.5.1
+    rev: 1.6.0
     hooks:
       - id: poetry-check
         name: Check that the Poetry configuration is valid
