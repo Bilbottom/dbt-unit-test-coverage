@@ -1,23 +1,35 @@
 """
 Generate the code coverage for the dbt project.
 """
-from __future__ import annotations
-
+import importlib.metadata
 import pathlib
 import subprocess
+from typing import Annotated
 
 import typer
 
 from dbt_unit_test_coverage.badge import generate_badge
 from dbt_unit_test_coverage.coverage import compute_test_coverage
 
+_DISTRIBUTION_METADATA = importlib.metadata.metadata("dbt_unit_test_coverage")
+
+
+def _version_callback(value: bool) -> None:
+    """
+    Print the version of the package and exit.
+    """
+    if value:
+        print(_DISTRIBUTION_METADATA["version"])
+        raise typer.Exit()
+
 
 def main(
-    project_dir: str = ".",
-    profiles_dir: str = ".",
-    badge_path: str = "coverage-dbt.svg",
-    compile_dbt: bool = False,
-    cov_report: bool = False,
+    project_dir: Annotated[str, typer.Option()] = ".",
+    profiles_dir: Annotated[str, typer.Option()] = ".",
+    badge_path: Annotated[str, typer.Option()] = "coverage-dbt.svg",
+    compile_dbt: Annotated[bool, typer.Option("--compile-dbt")] = False,
+    cov_report: Annotated[bool, typer.Option("--cov-report")] = False,
+    version: Annotated[bool, typer.Option("--version", callback=_version_callback, is_eager=True)] = None,
 ) -> None:
     """
     Generate the code coverage for the dbt project and write it (as an SVG)
@@ -31,6 +43,7 @@ def main(
         the code coverage, defaults to ``False``.
     :param cov_report: Whether to print the coverage report to stdout,
         defaults to ``False``.
+    :param version: The version of the package.
     """
     if compile_dbt:
         subprocess.run(["dbt", "compile", f"--project-dir={project_dir}", f"--profiles-dir={profiles_dir}"])
