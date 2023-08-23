@@ -1,6 +1,8 @@
 ---
 ci:
-  skip: ["poetry-lock"]
+  skip: [poetry-lock, pytest, coverage-badge]
+
+default_install_hook_types: [pre-commit, post-commit]
 
 repos:
   - repo: meta
@@ -16,17 +18,29 @@ repos:
       - id: trailing-whitespace
         name: Remove trailing whitespace
       - id: end-of-file-fixer
-        name: Check that files end with a newline character
-        exclude_types: [svg]
+        name: Ensure files end with a newline character
+      - id: mixed-line-ending
+        name: Align mixed line ending
       - id: check-added-large-files
         name: Check for large files
       - id: check-json
         name: Check JSON files are valid and parseable
       - id: check-yaml
         name: Check YAML files are valid and parseable
+      - id: check-toml
+        name: Check TOML files are valid and parseable
       - id: check-ast
         name: Validate Python
 
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.6.0
+    hooks:
+      - id: poetry-check
+        name: Check that the Poetry configuration is valid
+      - id: poetry-lock
+        name: Check that the lock file is up-to-date
+
+  # Formatting
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.0.2
     hooks:
@@ -40,30 +54,40 @@ repos:
         args: [--py39-plus]
         name: Align Python code to latest syntax
 
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
-        name: Sort Python imports
-        args: ["--profile", "black"]
-
   - repo: https://github.com/psf/black
     rev: 23.7.0
     hooks:
       - id: black
         name: Check Python formatting
 
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: Sort Python import statements
+        args: ["--filter-files"]
+
   - repo: https://github.com/hadialqattan/pycln
     rev: v2.2.2
     hooks:
       - id: pycln
-        name: Remove unused imports
+        name: Remove unused imports and variables
         args: [--config=pyproject.toml]
 
-  - repo: https://github.com/python-poetry/poetry
-    rev: 1.6.0
+  # Testing and coverage
+  - repo: local
     hooks:
-      - id: poetry-check
-        name: Check that the Poetry configuration is valid
-      - id: poetry-lock
-        name: Check that the lock file is up-to-date
+      - id: pytest
+        name: Run unit tests
+        entry: pytest tests -m "unit"
+        language: system
+        pass_filenames: false
+        stages: [commit]
+        always_run: true
+      - id: coverage-badge
+        name: Generate coverage badge
+        entry: coverage-badge -o coverage.svg -f
+        language: system
+        pass_filenames: false
+        stages: [post-commit]
+        always_run: true
