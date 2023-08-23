@@ -1,7 +1,8 @@
 <div align="center">
 
-[![Python 3.9](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
-[![Tests](https://github.com/Bilbottom/dbt-unit-test-coverage/actions/workflows/application-tests.yaml/badge.svg)](https://github.com/Bilbottom/dbt-unit-test-coverage/actions/workflows/application-tests.yaml)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
+[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
+[![application-tests](https://github.com/Bilbottom/dbt-unit-test-coverage/actions/workflows/application-tests.yaml/badge.svg)](https://github.com/Bilbottom/dbt-unit-test-coverage/actions/workflows/application-tests.yaml)
 [![coverage](coverage.svg)](https://github.com/dbrgn/coverage-badge)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Bilbottom/dbt-unit-test-coverage)](https://github.com/Bilbottom/dbt-unit-test-coverage/commits/main)
 
