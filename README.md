@@ -53,6 +53,28 @@ Help for the `dbt-unit-test-coverage` package can be generated using the `--help
 dbt-unit-test-coverage --help
 ```
 
+### Run as a pre-commit hook
+
+Rather than running this manually or as part of a CI workflow, you could choose to run this as a [local pre-commit hook](https://pre-commit.com/#repository-local-hooks).
+
+The exact configuration will depend on the size of your project and your developer workflow, but the following approach is a quick-start that should work for most projects.
+
+```yaml
+# .pre-commit-config.yaml
+default_install_hook_types: [pre-commit, post-commit]
+
+repos:
+  - repo: local
+    hooks:
+      - id: dbt-unit-test-coverage
+        name: Generate dbt coverage report
+        entry: dbt-unit-test-coverage  --compile-dbt
+        language: system
+        pass_filenames: false
+        stages: [post-commit]
+        always_run: true
+```
+
 ## Summary of extensions
 
 ### CTE unit testing
