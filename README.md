@@ -62,6 +62,7 @@ The exact configuration will depend on the size of your project and your develop
 ```yaml
 # .pre-commit-config.yaml
 default_install_hook_types: [pre-commit, post-commit]
+default_stages: [commit]
 
 repos:
   - repo: local

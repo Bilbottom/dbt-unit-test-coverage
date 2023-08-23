@@ -3,6 +3,7 @@ ci:
   skip: [poetry-lock, pytest, coverage-badge]
 
 default_install_hook_types: [pre-commit, post-commit]
+default_stages: [commit]
 
 repos:
   - repo: meta
@@ -82,7 +83,6 @@ repos:
         entry: pytest tests -m "unit"
         language: system
         pass_filenames: false
-        stages: [commit]
         always_run: true
       - id: coverage-badge
         name: Generate coverage badge
