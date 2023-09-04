@@ -36,17 +36,16 @@ def is_test_file(ast: nodes.Template) -> bool:
     if not hasattr(ast.body[0], "nodes"):
         return False
 
-    for node in ast.body[0].nodes:
-        if (
+    return any(
+        (
             isinstance(node, nodes.Call)
             and hasattr(node, "node")
             and hasattr(node.node, "name")
             and node.node.name == "config"
             and has_unit_test_tag(node.kwargs)
-        ):
-            return True
-
-    return False
+        )
+        for node in ast.body[0].nodes
+    )
 
 
 def get_cte_name(args: list[nodes.Const]) -> str | None:
@@ -56,11 +55,10 @@ def get_cte_name(args: list[nodes.Const]) -> str | None:
     if not isinstance(args[2], nodes.Dict):
         raise Exception("Unknown 3rd argument provided to test() function!")
 
-    for dict_item in args[2].items:
-        if dict_item.key.value == "cte_name":
-            return dict_item.value.value
-
-    return None
+    return next(
+        (dict_item.value.value for dict_item in args[2].items if dict_item.key.value == "cte_name"),
+        None,
+    )
 
 
 def get_test_files(env: Environment, src: pathlib.Path) -> list[pathlib.Path]:
