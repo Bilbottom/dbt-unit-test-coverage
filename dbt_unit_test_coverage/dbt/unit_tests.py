@@ -56,11 +56,7 @@ def get_cte_name(args: list[nodes.Const]) -> str | None:
         raise Exception("Unknown 3rd argument provided to test() function!")
 
     return next(
-        (
-            dict_item.value.value
-            for dict_item in args[2].items
-            if dict_item.key.value == "cte_name"
-        ),
+        (dict_item.value.value for dict_item in args[2].items if dict_item.key.value == "cte_name"),
         None,
     )
 
