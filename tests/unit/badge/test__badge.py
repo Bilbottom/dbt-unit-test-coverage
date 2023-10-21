@@ -1,5 +1,5 @@
 """
-Test the ``dbt_unit_test_coverage/badge.py`` module.
+Test the ``dbt_unit_test_coverage/badge/badge.py`` module.
 """
 import pathlib
 
