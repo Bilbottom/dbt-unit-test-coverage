@@ -176,7 +176,8 @@ def test__parse_models_and_ctes(dbt_config: DbtConfig, compiled_sql: str):
     """
     model_root = dbt_config.model_paths[0]
     compiled_root = dbt_config.compiled_paths[0]
-    model_root.mkdir(exist_ok=True), compiled_root.mkdir(exist_ok=True)
+    model_root.mkdir(parents=True, exist_ok=True)
+    compiled_root.mkdir(parents=True, exist_ok=True)
 
     (model_root / "model_1.sql").touch(exist_ok=True)
     (compiled_model := compiled_root / "model_1.sql").touch(exist_ok=True)

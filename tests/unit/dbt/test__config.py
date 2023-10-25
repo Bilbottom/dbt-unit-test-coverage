@@ -20,6 +20,7 @@ def dbt_config_root(tmp_path) -> pathlib.Path:
     dbt_project.write_text(
         textwrap.dedent(
             """
+            ---
             name: project_name
             model-paths: ["models"]
             test-paths: ["tests"]
@@ -36,7 +37,7 @@ def test__dbt_config__compiled_paths(dbt_config_root: pathlib.Path):
     """
     dbt_config = config.DbtConfig.from_root(dbt_config_root)
 
-    assert dbt_config.compiled_paths == [pathlib.Path("target/compiled/project_name/models")]
+    assert dbt_config.compiled_paths == [dbt_config_root / "target/compiled/project_name/models"]
 
 
 def test__dbt_config__from_root(dbt_config_root: pathlib.Path):
@@ -46,6 +47,6 @@ def test__dbt_config__from_root(dbt_config_root: pathlib.Path):
     dbt_config = config.DbtConfig.from_root(dbt_config_root)
 
     assert dbt_config.name == "project_name"
-    assert dbt_config.model_paths == [pathlib.Path("models")]
-    assert dbt_config.test_paths == [pathlib.Path("tests")]
-    assert dbt_config.target_path == pathlib.Path("target")
+    assert dbt_config.model_paths == [dbt_config_root / "models"]
+    assert dbt_config.test_paths == [dbt_config_root / "tests"]
+    assert dbt_config.target_path == dbt_config_root / "target"

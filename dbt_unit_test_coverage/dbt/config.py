@@ -29,15 +29,19 @@ def _deduplicate(items: list[_T]) -> list[_T]:
 @dataclasses.dataclass
 class DbtConfig:
     name: str
+    dbt_project_root: pathlib.Path
     model_paths: list[pathlib.Path]
     test_paths: list[pathlib.Path]
     target_path: pathlib.Path
     compiled_paths: list[pathlib.Path] = dataclasses.field(init=False)
 
     def __post_init__(self):
+        # fmt: off
         self.compiled_paths = [
-            self.target_path / "compiled" / self.name / model_path for model_path in self.model_paths
+            self.target_path / "compiled" / self.name / model_path.relative_to(self.dbt_project_root)
+            for model_path in self.model_paths
         ]
+        # fmt: on
 
     @classmethod
     def from_root(cls, dbt_project_root: pathlib.Path) -> DbtConfig:
@@ -54,7 +58,8 @@ class DbtConfig:
 
         return DbtConfig(
             name=config["name"],
-            model_paths=_deduplicate([pathlib.Path(p) for p in config.get("model-paths", "models")]),
-            test_paths=_deduplicate([pathlib.Path(p) for p in config.get("test-paths", "tests")]),
-            target_path=pathlib.Path(config.get("target-path", "target")),
+            dbt_project_root=dbt_project_root,
+            model_paths=_deduplicate([dbt_project_root / p for p in config.get("model-paths", "models")]),
+            test_paths=_deduplicate([dbt_project_root / p for p in config.get("test-paths", "tests")]),
+            target_path=dbt_project_root / config.get("target-path", "target"),
         )
