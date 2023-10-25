@@ -1,3 +1,8 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
 [tool.poetry]
 name = "dbt_unit_test_coverage"
 version = "0.0.2"  # Keep in sync with the README.md
@@ -10,11 +15,7 @@ packages = [{include = "dbt_unit_test_coverage"}]
 
 [tool.poetry.scripts]
 dbt-unit-test-coverage = 'dbt_unit_test_coverage.__main__:app'
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
+dbt-cov = 'dbt_unit_test_coverage.__main__:app'  # Convenience alias
 
 [tool.poetry.dependencies]
 python = "^3.9"
