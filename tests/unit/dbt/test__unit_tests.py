@@ -5,7 +5,7 @@ import textwrap
 
 import pytest
 
-import dbt_unit_test_coverage.dbt.unit_tests as unit_tests
+# import dbt_unit_test_coverage.dbt.unit_tests as unit_tests
 
 pytestmark = pytest.mark.unit  # noqa
 

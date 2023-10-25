@@ -16,7 +16,7 @@ def set_env() -> None:
     Set the environment variables.
     """
     os.environ["TEST__DBT_UNIT_TEST_COVERAGE__BAR"] = "bar"
-    main._DISTRIBUTION_METADATA["version"] = "1.2.3"
+    main._DISTRIBUTION_METADATA["version"] = "1.2.3"  # noqa
 
 
 @pytest.mark.parametrize(

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dbt_unit_test_coverage"
-version = "0.0.1"
+version = "0.0.2"  # Keep in sync with the README.md
 description = "Coverage metrics for dbt unit tests."
 license = "MIT"
 authors = ["Bilbottom", "darkdreamingdan"]

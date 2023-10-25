@@ -47,7 +47,7 @@ def main(
     badge_path: Annotated[str, typer.Option()] = "coverage-dbt.svg",
     compile_dbt: Annotated[bool, typer.Option("--compile-dbt")] = False,
     cov_report: Annotated[bool, typer.Option("--cov-report")] = False,
-    version: Annotated[bool, typer.Option("--version", callback=_version_callback, is_eager=True)] = None,
+    version: Annotated[bool, typer.Option("--version", callback=_version_callback, is_eager=True)] = None,  # noqa
 ) -> None:
     """
     Generate the code coverage for the dbt project and write it (as an SVG)

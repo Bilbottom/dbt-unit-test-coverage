@@ -80,13 +80,13 @@ def get_test_cases(env: Environment, file: pathlib.Path) -> list[TestCase]:
         ast = env.parse(f.read())
 
     calls = [
-        callblock.call
-        for callblock in ast.body
+        call_block.call
+        for call_block in ast.body
         if (
-            isinstance(callblock, nodes.CallBlock)
-            and hasattr(callblock.call.node, "node")
-            and callblock.call.node.node.name == "dbt_unit_testing"
-            and callblock.call.node.attr == "test"
+            isinstance(call_block, nodes.CallBlock)
+            and hasattr(call_block.call.node, "node")
+            and call_block.call.node.node.name == "dbt_unit_testing"
+            and call_block.call.node.attr == "test"
         )
     ]
 
