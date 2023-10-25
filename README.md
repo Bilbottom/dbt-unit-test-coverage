@@ -28,7 +28,7 @@ This is not for public consumption (yet!), but rather to show off some Sainsbury
 This is currently only available on GitHub, so you'll need to supply the GitHub URL to `pip`:
 
 ```
-pip install git+https://github.com/Bilbottom/dbt-unit-test-coverage@v0.0.1
+pip install git+https://github.com/Bilbottom/dbt-unit-test-coverage@v0.0.2
 ```
 
 ## Usage 📖
@@ -88,7 +88,7 @@ This fork adds the ability to unit test particular CTEs in a model, provided you
 
 ### Code coverage
 
-With the CTE unit tests, we can then measure the number of (logical) CTEs that don't have tests which forms the coverage metric.
+With the CTE unit tests, we can then measure the number of (logical) CTEs that don't have tests which gives us the coverage metric.
 
 ## Future plans
 
