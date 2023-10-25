@@ -12,6 +12,7 @@ from dbt_unit_test_coverage.dbt import DbtConfig
 def dbt_config(tmp_path: pathlib.Path) -> DbtConfig:
     return DbtConfig(
         name="test",
+        dbt_project_root=tmp_path,
         model_paths=[tmp_path / "models"],
         test_paths=[tmp_path / "tests"],
         target_path=tmp_path / "target",
