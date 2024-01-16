@@ -26,11 +26,12 @@ sqlglot = "^17.14.2"
 jinja2 = "^3.1.2"
 
 [tool.poetry.group]
-dev.optional = false
-test.optional = false
+dev.optional = true
+test.optional = true
+ide.optional = true
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^2.21.0"
+pre-commit = "^3.3.3"
 
 [tool.poetry.group.test.dependencies]
 coverage-badge = "^1.1.0"
@@ -38,6 +39,10 @@ dbt-core = "1.4.6"  # Pinned for the SQLite adapter
 dbt-sqlite = "1.4.0"
 pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
+
+# Packages just for IDE integration
+[tool.poetry.group.ide.dependencies]
+black = "*"
 
 
 [tool.pytest.ini_options]
