@@ -1,6 +1,7 @@
 """
 Generate the coverage metric for the dbt unit tests.
 """
+
 from __future__ import annotations
 
 import dataclasses

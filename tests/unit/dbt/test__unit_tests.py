@@ -1,6 +1,7 @@
 """
 Test the ``dbt_unit_test_coverage/dbt/unit_tests.py`` module.
 """
+
 import textwrap
 
 import pytest

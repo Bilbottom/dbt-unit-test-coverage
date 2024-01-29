@@ -1,6 +1,7 @@
 """
 Integration tests for the package.
 """
+
 import pytest
 
 pytestmark = pytest.mark.integration

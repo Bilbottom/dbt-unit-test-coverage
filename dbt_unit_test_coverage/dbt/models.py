@@ -1,6 +1,7 @@
 """
 Parse the compiled model SQL files to find the CTEs.
 """
+
 import dataclasses
 import pathlib
 import textwrap

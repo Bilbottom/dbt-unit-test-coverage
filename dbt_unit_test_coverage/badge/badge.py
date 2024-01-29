@@ -5,6 +5,7 @@ Borrowed from:
 
 - https://docs.gitlab.com/ee/user/project/badges.html
 """
+
 import bisect
 import math
 import pathlib

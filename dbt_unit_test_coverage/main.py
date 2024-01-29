@@ -1,6 +1,7 @@
 """
 Generate the code coverage for the dbt project.
 """
+
 from __future__ import annotations
 
 import importlib.metadata

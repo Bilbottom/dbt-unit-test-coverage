@@ -1,6 +1,7 @@
 """
 Entry point for the ``dbt_unit_test_coverage`` package.
 """
+
 import typer
 
 import dbt_unit_test_coverage.main

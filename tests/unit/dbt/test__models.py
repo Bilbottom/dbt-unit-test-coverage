@@ -1,6 +1,7 @@
 """
 Test the ``dbt_unit_test_coverage/dbt/models.py`` module.
 """
+
 import pathlib
 import textwrap
 
