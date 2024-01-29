@@ -1,6 +1,7 @@
 """
 Create the fixtures to use throughout the tests.
 """
+
 import pathlib
 
 import pytest

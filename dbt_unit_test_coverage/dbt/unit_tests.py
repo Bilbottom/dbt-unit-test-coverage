@@ -1,6 +1,7 @@
 """
 Parse the dbt unit tests to find the CTEs that are tested.
 """
+
 from __future__ import annotations
 
 import dataclasses

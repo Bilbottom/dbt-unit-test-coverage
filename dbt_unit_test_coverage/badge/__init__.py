@@ -1,6 +1,7 @@
 """
 Create a badge for the code coverage of the dbt project.
 """
+
 from .badge import generate_badge
 
 __all__ = [

@@ -1,6 +1,7 @@
 """
 The ``dbt_project.yml`` file exposed as a dataclass.
 """
+
 from __future__ import annotations
 
 import dataclasses

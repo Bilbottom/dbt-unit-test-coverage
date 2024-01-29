@@ -1,6 +1,7 @@
 """
 Test the ``dbt_unit_test_coverage/coverage.py`` module.
 """
+
 import pathlib
 
 import pytest
